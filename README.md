@@ -132,6 +132,7 @@ If you are an **investor**, **developer**, or **AI enthusiast**:
 - Join early
 - Help shape the platform
 - Grow with the ecosystem
+  
 ✉️ Email = airproxcrop@protonmail.com
 
 > **AIPROXCROP is not just a platform.  
