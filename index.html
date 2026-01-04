@@ -2,168 +2,220 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AIPROXCROP — Early AI Marketplace & Remote Company</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AIPROXCROP — AI Scoring & Marketplace</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-
-:root{
-  --bg:#0b0f1a;
-  --panel:#12172a;
-  --blue:#3b82f6;
-  --text:#e5e7eb;
-  --muted:#9ca3af;
-  --border:rgba(255,255,255,.08);
-}
-
 html{scroll-behavior:smooth}
-
 body{
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background:
-    radial-gradient(900px 500px at 15% -10%, #0e2a55, transparent),
-    radial-gradient(800px 400px at 85% 0%, #0a1835, transparent),
-    var(--bg);
-  color:var(--text);
-  line-height:1.6;
+  font-family:Inter,system-ui;
+  background:radial-gradient(1200px 600px at top,#0b1224,#05070d);
+  color:#e9ecf1;
+  overflow-x:hidden;
 }
 
-/* NAV */
+/* ===== GLOBAL ===== */
+.page{display:none;min-height:100vh;padding:96px 8%}
+.page.active{display:block}
+h1,h2,h3{font-weight:700}
+p{line-height:1.75;opacity:.92}
+a{text-decoration:none;color:inherit}
+
+/* ===== HEADER ===== */
 header{
-  position:fixed;
-  top:0;left:0;right:0;
+  position:fixed;top:0;left:0;right:0;
   height:64px;
+  background:rgba(6,9,18,.75);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.06);
   display:flex;
   align-items:center;
-  padding:0 28px;
-  background:rgba(11,15,26,.75);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border);
+  padding:0 6%;
   z-index:100;
 }
-.brand{
-  font-weight:700;
-  letter-spacing:2px;
-  color:var(--blue);
+header h1{
+  color:#4da3ff;
+  font-size:18px;
+  letter-spacing:1.2px;
 }
 nav{
   margin-left:auto;
   display:flex;
-  gap:24px;
+  gap:26px;
 }
-nav a{
-  text-decoration:none;
-  font-size:14px;
-  color:var(--muted);
-}
-nav a:hover{color:var(--text)}
+nav a{font-size:14px;opacity:.85;cursor:pointer}
+nav a:hover{opacity:1}
 
-/* HERO */
+/* ===== MOBILE MENU ===== */
+.menu-btn{display:none;margin-left:auto;font-size:22px}
+@media(max-width:768px){
+  nav{
+    position:fixed;
+    top:64px;right:-100%;
+    width:70%;
+    height:100vh;
+    background:#070a12;
+    flex-direction:column;
+    padding:40px;
+    transition:.4s;
+  }
+  nav.active{right:0}
+  nav a{font-size:18px;margin-bottom:24px}
+  .menu-btn{display:block}
+}
+
+/* ===== HERO ===== */
 .hero{
-  min-height:100vh;
-  display:flex;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:60px;
   align-items:center;
-  padding:120px 28px 80px;
 }
-.hero-content{
-  max-width:820px;
-}
-.hero h1{
-  font-size:46px;
+@media(max-width:900px){.hero{grid-template-columns:1fr}}
+
+.hero h2{
+  font-size:48px;
   line-height:1.15;
-  margin-bottom:20px;
 }
-.hero h1 span{color:var(--blue)}
-.hero p{
-  color:var(--muted);
-  font-size:17px;
-  max-width:700px;
-}
-.cta-group{
-  display:flex;
-  gap:16px;
-  flex-wrap:wrap;
-  margin-top:34px;
-}
-.cta{
-  padding:14px 30px;
-  border-radius:12px;
-  background:linear-gradient(135deg,var(--blue),#60a5fa);
-  color:#020617;
-  text-decoration:none;
+.hero span{color:#4da3ff}
+.hero p{margin:24px 0 42px;font-size:18px}
+
+/* ===== BUTTON ===== */
+.btns{display:flex;gap:16px;flex-wrap:wrap}
+.btn{
+  padding:14px 24px;
+  border-radius:14px;
   font-weight:600;
+  transition:.3s;
 }
-.cta.secondary{
-  background:none;
-  border:1px solid var(--border);
-  color:var(--text);
+.primary{
+  background:linear-gradient(135deg,#4da3ff,#00ffc6);
+  color:#000;
+}
+.primary:hover{transform:translateY(-3px)}
+.ghost{
+  border:1px solid rgba(255,255,255,.22);
+}
+.ghost:hover{background:rgba(255,255,255,.06)}
+
+/* =====================================================
+   🤖 3D AI ROBOT (FRIENDLY + FUTURISTIC)
+===================================================== */
+.robot{
+  width:280px;
+  height:380px;
+  margin:auto;
+  position:relative;
+  perspective:900px;
+  animation:float 4s ease-in-out infinite;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-14px)}
 }
 
-/* SECTIONS */
-section{padding:90px 28px}
-.container{max-width:1100px;margin:auto}
-
-.section-title{
-  font-size:28px;
-  margin-bottom:10px;
+/* HEAD */
+.robot-head{
+  width:180px;height:150px;
+  background:linear-gradient(145deg,#121b38,#0b1224);
+  border-radius:36px;
+  margin:auto;
+  position:relative;
+  transform:rotateX(8deg);
+  box-shadow:
+    0 30px 60px rgba(77,163,255,.25),
+    inset 0 0 20px rgba(255,255,255,.05);
 }
-.section-desc{
-  color:var(--muted);
-  max-width:720px;
-  margin-bottom:48px;
+.eye{
+  width:18px;height:18px;
+  background:#00ffc6;
+  border-radius:50%;
+  position:absolute;top:52px;
+  box-shadow:0 0 14px rgba(0,255,198,.8);
+  animation:blink 4s infinite;
+}
+.eye.left{left:52px}
+.eye.right{right:52px}
+
+@keyframes blink{
+  0%,92%,100%{transform:scaleY(1)}
+  94%{transform:scaleY(.1)}
 }
 
-/* CARDS */
+/* BODY */
+.robot-body{
+  width:220px;height:180px;
+  background:linear-gradient(145deg,#0f1833,#0a1122);
+  border-radius:40px;
+  margin:18px auto 0;
+  position:relative;
+  box-shadow:
+    inset 0 0 30px rgba(0,255,198,.15),
+    0 20px 40px rgba(0,0,0,.6);
+}
+
+/* CORE */
+.robot-core{
+  width:64px;height:64px;
+  background:radial-gradient(circle,#00ffc6,#007bff);
+  border-radius:50%;
+  position:absolute;
+  top:58px;left:50%;
+  transform:translateX(-50%);
+  box-shadow:0 0 26px rgba(0,255,198,.9);
+  animation:pulse 2.4s infinite;
+}
+@keyframes pulse{
+  0%,100%{transform:translateX(-50%) scale(1)}
+  50%{transform:translateX(-50%) scale(1.1)}
+}
+
+/* ===== GRID ===== */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:24px;
+  gap:28px;
+  margin-top:60px;
 }
 .card{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:28px;
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:22px;
+  padding:30px;
+  transition:.35s;
 }
-.card h3{margin-bottom:10px}
-.card p{color:var(--muted);font-size:14px}
+.card:hover{
+  transform:translateY(-6px);
+  background:rgba(255,255,255,.07);
+}
 
-/* ROADMAP */
-.roadmap{
-  border-left:2px solid var(--border);
-  padding-left:28px;
+/* =====================================================
+   📍 ROADMAP (CLEAR & BUSINESS-READY)
+===================================================== */
+.timeline{
+  margin-top:60px;
+  display:grid;
+  gap:28px;
 }
-.step{
-  position:relative;
-  margin-bottom:36px;
+.phase{
+  border-left:3px solid #4da3ff;
+  padding-left:24px;
+  opacity:0;
+  transform:translateY(20px);
+  transition:.6s;
 }
-.step::before{
-  content:"";
-  position:absolute;
-  left:-36px;
-  top:6px;
-  width:12px;
-  height:12px;
-  background:var(--blue);
-  border-radius:50%;
-}
-.step h4{margin-bottom:6px}
-.step p{color:var(--muted);font-size:14px}
+.phase.active{opacity:1;transform:none}
+.phase h3{color:#4da3ff;margin-bottom:6px}
+.phase ul{margin-top:12px;padding-left:18px}
+.phase li{margin-bottom:8px;opacity:.9}
 
-/* FOOTER */
+/* ===== FOOTER ===== */
 footer{
-  padding:40px 28px;
-  border-top:1px solid var(--border);
+  padding:50px 8%;
+  border-top:1px solid rgba(255,255,255,.06);
   text-align:center;
-  color:var(--muted);
-  font-size:13px;
-}
-
-/* RESPONSIVE */
-@media(max-width:640px){
-  nav{display:none}
-  .hero h1{font-size:34px}
+  opacity:.7;
 }
 </style>
 </head>
@@ -171,181 +223,126 @@ footer{
 <body>
 
 <header>
-  <div class="brand">AIPROXCROP</div>
-  <nav>
-    <a href="#about">About</a>
-    <a href="#offer">Early Offer</a>
-    <a href="#model">Platform</a>
-    <a href="#roadmap">Roadmap</a>
+  <h1>AIPROXCROP</h1>
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  <nav id="nav">
+    <a onclick="go('home')">Home</a>
+    <a onclick="go('about')">About</a>
+    <a onclick="go('roadmap')">Roadmap</a>
+    <a onclick="go('join')">Join</a>
   </nav>
 </header>
 
-<section class="hero">
-  <div class="hero-content">
-    <h1>
-      An Early-Stage <span>AI Marketplace</span><br>
-      Built With Investors & Developers From Day One
-    </h1>
-    <p>
-      AIPROXCROP is an early-stage technology initiative focused on AI trading,
-      AI evaluation, and remote-first company simulation.
-      We are actively inviting investors and developers to build this platform together from the beginning.
-    </p>
-
-    <div class="cta-group">
-      <a href="#offer" class="cta">Join as Investor</a>
-      <a href="#offer" class="cta secondary">Join as Developer</a>
+<!-- HOME -->
+<section id="home" class="page active">
+  <div class="hero">
+    <div>
+      <h2>Building the <span>AI Scoring</span><br>& Marketplace Company</h2>
+      <p>
+        AIPROXCROP is building a transparent AI economy where
+        AI can be evaluated, traded, and developed remotely by anyone.
+      </p>
+      <div class="btns">
+        <a class="btn primary" onclick="go('join')">Join as Investor</a>
+        <a class="btn ghost" onclick="go('join')">Join as Developer</a>
+      </div>
     </div>
-  </div>
-</section>
 
-<section id="about">
-  <div class="container">
-    <h2 class="section-title">About AIPROXCROP</h2>
-    <p class="section-desc">
-      AIPROXCROP is not a finished product — it is a foundation.
-    </p>
-
-    <div class="grid">
-      <div class="card">
-        <h3>AI Marketplace Core</h3>
-        <p>
-          A structured marketplace where AI models, datasets,
-          and AI services can be traded with transparent ratings and metrics.
-        </p>
+    <div class="robot">
+      <div class="robot-head">
+        <div class="eye left"></div>
+        <div class="eye right"></div>
       </div>
-      <div class="card">
-        <h3>AI Rating & Trust System</h3>
-        <p>
-          We aim to standardize AI evaluation: performance,
-          reliability, ethical considerations, and real-world usability.
-        </p>
-      </div>
-      <div class="card">
-        <h3>Remote Simulation Company</h3>
-        <p>
-          AIPROXCROP operates as a remote-first organization,
-          simulating real company workflows without physical offices.
-        </p>
+      <div class="robot-body">
+        <div class="robot-core"></div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="offer">
-  <div class="container">
-    <h2 class="section-title">Early Collaboration Offer</h2>
-    <p class="section-desc">
-      We are currently open for early-stage collaboration.
-    </p>
+<!-- ABOUT -->
+<section id="about" class="page">
+  <h2>What We Build</h2>
+  <div class="grid">
+    <div class="card"><h3>AI Scoring Engine</h3><p>Objective, transparent, multi-metric AI evaluation.</p></div>
+    <div class="card"><h3>AI Marketplace</h3><p>Buy & sell AI models with verified performance.</p></div>
+    <div class="card"><h3>Remote AI Company</h3><p>Work-from-anywhere digital workforce simulation.</p></div>
+  </div>
+</section>
 
-    <div class="grid">
-      <div class="card">
-        <h3>For Investors</h3>
-        <p>
-          • Early entry before platform launch<br>
-          • Direct involvement in strategic direction<br>
-          • Long-term equity-focused collaboration<br>
-          • Participation in shaping AI evaluation standards
-        </p>
-      </div>
-      <div class="card">
-        <h3>For Developers</h3>
-        <p>
-          • Join from the foundation phase<br>
-          • Influence architecture & platform design<br>
-          • Remote-first collaboration<br>
-          • Opportunity for future equity or revenue share
-        </p>
-      </div>
-      <div class="card">
-        <h3>Why Now?</h3>
-        <p>
-          This is the earliest phase.
-          Decisions made now will define how AIPROXCROP grows,
-          scales, and operates in the future.
-        </p>
-      </div>
+<!-- ROADMAP -->
+<section id="roadmap" class="page">
+  <h2>Roadmap</h2>
+
+  <div class="timeline">
+    <div class="phase">
+      <h3>Phase 1 — Foundation</h3>
+      <ul>
+        <li>Company branding & open-source presence</li>
+        <li>AI scoring core (accuracy, bias, robustness)</li>
+        <li>Early investor & developer onboarding</li>
+      </ul>
+    </div>
+
+    <div class="phase">
+      <h3>Phase 2 — Marketplace</h3>
+      <ul>
+        <li>AI model marketplace MVP</li>
+        <li>Public AI rating & comparison</li>
+        <li>Revenue experiment & monetization</li>
+      </ul>
+    </div>
+
+    <div class="phase">
+      <h3>Phase 3 — Remote Company</h3>
+      <ul>
+        <li>Global contributor system</li>
+        <li>AI task & reward simulation</li>
+        <li>Company-scale collaboration</li>
+      </ul>
+    </div>
+
+    <div class="phase">
+      <h3>Phase 4 — AI Economy</h3>
+      <ul>
+        <li>Decentralized AI valuation</li>
+        <li>Enterprise & investor expansion</li>
+        <li>Long-term AI economic ecosystem</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<section id="model">
-  <div class="container">
-    <h2 class="section-title">Platform Direction</h2>
-    <p class="section-desc">
-      AIPROXCROP is designed to grow step by step.
-    </p>
-
-    <div class="grid">
-      <div class="card">
-        <h3>AI Trading</h3>
-        <p>
-          Listing, rating, licensing, and distribution of AI models
-          and AI-powered solutions.
-        </p>
-      </div>
-      <div class="card">
-        <h3>Evaluation-as-a-Service</h3>
-        <p>
-          Independent AI audits, benchmarking,
-          and trust scoring for organizations.
-        </p>
-      </div>
-      <div class="card">
-        <h3>Remote Workforce System</h3>
-        <p>
-          Simulation-based task allocation,
-          contribution tracking, and performance evaluation.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="roadmap">
-  <div class="container">
-    <h2 class="section-title">Roadmap</h2>
-    <p class="section-desc">
-      A realistic and flexible development path.
-    </p>
-
-    <div class="roadmap">
-      <div class="step">
-        <h4>Phase 1 — Foundation (Current)</h4>
-        <p>
-          Concept validation, early collaborators,
-          platform architecture design.
-        </p>
-      </div>
-      <div class="step">
-        <h4>Phase 2 — MVP Build</h4>
-        <p>
-          Core marketplace, AI rating prototype,
-          remote workflow testing.
-        </p>
-      </div>
-      <div class="step">
-        <h4>Phase 3 — Expansion</h4>
-        <p>
-          Developer onboarding, investor partnerships,
-          evaluation standard refinement.
-        </p>
-      </div>
-      <div class="step">
-        <h4>Phase 4 — Scale</h4>
-        <p>
-          Platform growth, enterprise access,
-          long-term sustainability.
-        </p>
-      </div>
-    </div>
+<!-- JOIN -->
+<section id="join" class="page">
+  <h2>Join AIPROXCROP</h2>
+  <p>We are inviting early investors & developers to build the future of AI.</p>
+  <div class="btns" style="margin-top:40px">
+    <a class="btn primary" href="https://github.com/airproxcrop" target="_blank">GitHub</a>
+    <a class="btn ghost" href="mailto:contact@airproxcrop.com">Contact</a>
   </div>
 </section>
 
 <footer>
-  © AIPROXCROP — Early-stage collaboration in AI, trust, and remote systems.
+  © 2026 AIPROXCROP — AI Scoring & Marketplace Company
 </footer>
+
+<script>
+function toggleMenu(){
+  document.getElementById('nav').classList.toggle('active');
+}
+function go(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.getElementById('nav').classList.remove('active');
+  window.scrollTo(0,0);
+}
+const phases=document.querySelectorAll('.phase');
+const obs=new IntersectionObserver(e=>{
+  e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('active')});
+},{threshold:.3});
+phases.forEach(p=>obs.observe(p));
+</script>
 
 </body>
 </html>
